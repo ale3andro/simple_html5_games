@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+   
+    <title>Απλή επιλογή λέξης</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bower_components/bootstrap4/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/2-col-portfolio.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading -->
+      <div class="alert alert-primary" role="alert">Στις παρακάτω προτάσεις, επιλέξτε τη λέξη - ζώο</div>
+      
+      <div class="row" class="">
+          <div id="game_image" class="rounded d-flex justify-content-center"><img src="img/Loadingsome.gif"></div>
+      </div>
+
+      <div id="game_sentence" class="row" class="">
+        
+      </div>
+
+      <div class="row">
+        <input type="button" id="alxcheck" value="Έλεγχος">
+    </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../bower_components/bootstrap4/dist/js/bootstrap.min.js"></script>
+    <script>
+        question_num=18;
+        var words = [ "ΕΛΕΦΑΝΤΑΣ", "ΚΑΝΑΡΙΝΙ", "ΠΟΝΤΙΚΙ", "ΑΛΟΓΟ", "ΣΚΥΛΟΣ", "ΓΑΤΑ", "ΠΑΠΙΑ", "ΨΑΡΙ", "ΛΥΚΟΣ", "ΑΛΕΠΟΥ", "ΔΕΛΦΙΝΙ", "ΤΣΙΤΑΧ", "ΚΡΟΚΟΔΕΙΛΟΣ", "ΑΡΚΟΥΔΟΣ", "ΑΕΤΟΣ", "ΚΟΥΝΟΥΠΙ", "ΜΥΓΑ", "ΧΤΑΠΟΔΙ", "ΛΑΒΡΑΚΙ"];
+        var filenames = [ "ΕΛΈΦΑΝΤΑΣ", "ΚΑΝΑΡΊΝΙ", "ΠΟΝΤΊΚΙ", "ΆΛΟΓΟ", "ΣΚΎΛΟΣ", "ΓΆΤΑ", "ΠΆΠΙΑ", "ΨΆΡΙ", "ΛΎΚΟΣ", "ΑΛΕΠΟΎ", "ΔΕΛΦΊΝΙ", "ΤΣΊΤΑΧ", "ΚΡΟΚΌΔΕΙΛΟΣ", "ΑΡΚΟΎΔΟΣ", "ΑΕΤΌΣ", "ΚΟΥΝΟΎΠΙ", "ΜΎΓΑ", "ΧΤΑΠΌΔΙ", "ΛΑΒΡΆΚΙ"];
+        var greek_letters = ["Α", "Β", "Γ", "Δ", "Ε", "Ζ", "Η", "Θ", "Ι", "Κ", "Λ", "Μ", "Ν", "Ξ", "Ο", "Π", "Ρ", "Σ", "Τ", "Υ", "Φ", "Χ", "Ψ", "Ω"];
+      $( function() {
+        $( "#alxcheck" ).click( function() {
+          formed_word = '';
+          for (i=0; i<words[question_num].length; i++)
+            formed_word+=($('#letter'+i).attr('src')[26]);
+          if (formed_word==words[question_num]) {
+            alert('ΜΠΡΑΒΟ!');
+            next_challenge();
+          }
+          else  
+            alert('try again');
+        });
+          
+       
+      });
+
+      function get_next_letter(letter_index) {
+          the_next = letter_index + 1;
+          if (the_next==24)
+            the_next=0;  
+          return the_next;
+      }
+      function get_previous_letter(letter_index) {
+          the_previous = letter_index - 1;
+          if (the_previous==-1)
+            the_previous=23;
+          return the_previous;
+      }
+
+      function change_letter(img_id, is_next=true) {
+        letter_ordinal = parseInt($('#' + img_id).attr("value"));
+        next_letter = get_next_letter(letter_ordinal);
+        previous_letter = get_previous_letter(letter_ordinal);
+        
+        new_letter=previous_letter;
+        if (is_next) { new_letter=next_letter; }
+        
+        $('#' + img_id).attr("src","img/greek-capital-letters/" + greek_letters[new_letter] + ".png");   
+        $('#' + img_id).attr("value", new_letter);
+        
+        $('#' + img_id + '_previous').attr('onclick', 'change_letter(\'' + img_id + '\', false);');
+        $('#' + img_id + '_next').attr('onclick', 'change_letter(\'' + img_id + '\');');
+      }
+
+      function next_challenge(firstrun=false) {
+        if (!firstrun)
+          question_num++;
+        if (question_num==words.length)
+        {
+          alert('game over!');
+          return;
+        }
+          $('#game_sentence').html('');
+        for (var i=0; i<words[question_num].length; i++) {
+          random_value = Math.floor(Math.random() * 23);
+          $('#game_sentence').html($('#game_sentence').html() + "<div class='col-sm'>\
+                                    <img id='letter" + i + "_previous' src='img/greek-capital-letters/arrow_up.png' onclick='change_letter(\"letter" + i + "\", false);'/><br />\
+                                    <img id='letter" + i + "' src='img/greek-capital-letters/" + greek_letters[random_value] + ".png' value='" + random_value + "'><br />\
+                                    <img id='letter" + i + "_next' src='img/greek-capital-letters/arrow_down.png' onclick='change_letter(\"letter" + i + "\");'/></div>");
+        }
+        $('#game_image').html('<img class="img-fluid" style="height:300px" src="img/free-clipart-animals/' + filenames[question_num].toUpperCase() + '.png">');
+      }
+
+       $( document ).ready(function() { next_challenge(true); });
+
+</script>
+
+  </body>
+
+</html>

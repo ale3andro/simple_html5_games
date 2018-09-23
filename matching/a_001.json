@@ -1,0 +1,51 @@
+{
+    "metadata" : {
+                    "title" : "Quiz1",
+                    "class" : "Α",
+                    "answer" : "23104"
+                },
+    "draggables" : {
+                    "draggable0" : {
+                                        "value" : "0", 
+                                        "img_src" : "images/image01.png"
+                                    },
+                    "draggable1" : {
+                                        "value" : "1", 
+                                        "img_src" : "images/image01.png"
+                                    },
+                    "draggable2" : {
+                                        "value" : "2", 
+                                        "img_src" : "images/image01.png"
+                                    },
+                    "draggable3" : {
+                                        "value" : "3", 
+                                        "img_src" : "images/image01.png"
+                                    },
+                    "draggable4" : {
+                                        "value" : "4", 
+                                        "img_src" : "images/image01.png"
+                                    }
+                    },
+    "droppables" : {
+                    "droppable0" : {
+                                        "span_id" : "0", 
+                                        "text" : "images/image01.png"
+                                    },
+                    "droppable1" : {
+                                        "span_id" : "1", 
+                                        "text" : "images/image01.png"
+                                    },
+                    "droppable2" : {
+                                        "span_id" : "2", 
+                                        "text" : "images/image01.png"
+                                    },
+                    "droppable3" : {
+                                        "span_id" : "3", 
+                                        "text" : "images/image01.png"
+                                    },
+                    "droppable4" : {
+                                        "span_id" : "4", 
+                                        "text" : "images/image01.png"
+                                    }
+                    }
+}

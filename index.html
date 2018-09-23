@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>2 Col Portfolio - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bower_components/bootstrap4/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/2-col-portfolio.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Αναγραμματισμοί συλλαβών</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading -->
+      <h1 class="my-4"><small>Βάλε τις συλλαβές στη σωστή σειρά για να σχηματίσεις τη λέξη!</small></h1>
+
+      <div class="row" id="image">
+        <img src="img/items/πιπίλα.jpg">
+      </div>
+
+      <div class="row" id="game_row">
+        <div class="demo" id="png_container">
+          <ul id="sortable">
+            <li id="alx0" class="ui-state-default"><img src="img/papi-piece0.png"></li>
+            <li id="alx1" class="ui-state-default"><img src="img/papi-piece1.png"></li>
+            <li id="alx2" class="ui-state-default"><img src="img/papi-piece1.png"></li>
+          </ul>
+        </div>
+        <input type="button" id="alxcheck" value="Έλεγχος"/>
+      </div>
+      <!-- /.row -->
+
+      <br /><br />
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyleft ale3andro.gr 05-2018 - revision 0.1</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../bower_components/bootstrap4/dist/js/bootstrap.min.js"></script>
+    <script>
+      $( function() {
+        $('ul#sortable').sortable({
+            start: function(event, ui) {
+              var start_pos = ui.item.index();
+              ui.item.data('start_pos', start_pos);
+            }     
+        });
+        $( "#alxcheck" ).click( function() {
+          given_answer = $( "#sortable" ).sortable('toArray');
+          if (given_answer == "alx0,alx1,alx2")
+            next_question();
+          else 
+            alert('Δοκίμασε πάλι');
+
+        });
+
+        words = [
+          ['πι', 'πί', 'λα'],
+          ['πα', 'τί', 'νι'],
+          ['πο', 'τά', 'μι'],
+          ['τι', 'μό', 'νι'],
+          ['σέ', 'λι', 'νο'],
+          ['σα', 'κά', 'κι'],
+          ['πε', 'πό', 'νι'],
+          ['λε', 'μό', 'νι'],
+          ['σα', 'λό', 'νι'],
+          ['κα', 'μή', 'λα'],
+          ['κα', 'λά', 'θι'],
+          ['ρα', 'κέ', 'τα'],
+          ['κα', 'ρό', 'το'],
+          ['βα', 'ρέ', 'λι'],
+          ['βε', 'λό', 'να'],
+          ['βα', 'γό', 'νι'],
+          ['κα', 'λά', 'μι'],
+          ['σα', 'λά', 'μι'],
+          ['κα', 'νά', 'τα'],
+          ['κε', 'φά', 'λι'],
+          ['κε', 'ρά', 'σι'],
+          ['κέ', 'ρα', 'το'],
+          ['κο', 'λώ', 'να'],
+          ['κο', 'ρώ', 'να'],
+          ['κό', 'κα', 'λο'],
+          ['λά', 'χα', 'νο'],
+          ['κα', 'πέ', 'λο'],
+          ['κα', 'ρά', 'βι'],
+          ['σα', 'γό', 'νι'],
+        ]
+      });
+
+      $( document ).ready(function() {
+        counter=0;
+        console.log(words[counter][0]);
+        console.log(words[counter][1]);
+        console.log(words[counter][2]);
+       
+        $('#alx0').html('<img src="img/' + words[counter][0] + '.png">');
+        $('#alx1').html('<img src="img/' + words[counter][1] + '.png">');
+        $('#alx2').html('<img src="img/' + words[counter][2] + '.png">');
+        $("#alx1").insertBefore($("#alx0"));
+      });
+
+      function check_array_equality(a1, a2) {
+        if (a1.length != a2.length)
+          return false;
+        for (i=0; i<a1.length; i++) {
+          if (a1[i] != a2[i])
+            return false;
+        }
+        return true;
+      }
+
+      function next_question() {
+        counter+=1;
+        if (counter<words.length) { 
+          
+          $('#alx0').html('<img src="img/' + words[counter][0] + '.png">');
+          $('#alx1').html('<img src="img/' + words[counter][1] + '.png">');
+          $('#alx2').html('<img src="img/' + words[counter][2] + '.png">');
+          
+          combinations = [
+            [1, 0, 2],
+            [1, 2, 0],
+            [2, 0, 1],
+            [2, 1, 0]
+          ];
+          positions = combinations[Math.floor(Math.random()*4)]; console.log('Rand: ' + positions);
+          // Βάζω τα divs στην αρχική σειρά (alx0 - alx1 - alx2)
+          $("#alx0").insertBefore($("#alx1"));
+          $("#alx1").insertBefore($("#alx2"));
+          console.log(positions);
+          
+          if (JSON.stringify(positions) === JSON.stringify([1, 0, 2])) { $("#alx1").insertBefore($("#alx0")); console.log("debug 1"); }
+          if (JSON.stringify(positions) === JSON.stringify([1, 2, 0])) { $("#alx0").insertAfter($("#alx2")); console.log("debug 1"); }
+          if (JSON.stringify(positions) === JSON.stringify([2, 0, 1])) { $("#alx2").insertBefore($("#alx0")); console.log("debug 1"); }
+          if (JSON.stringify(positions) === JSON.stringify([2, 1, 0])) { $("#alx2").insertBefore($("#alx1")); $("#alx0").insertAfter($("#alx1")); console.log("debug 1"); }
+
+          image_name = 'img/items/' + words[counter][0] + words[counter][1] + words[counter][2] + '.jpg';
+          $('#image').html('<img src="' + image_name + '">');
+        } else {
+          $('#image').html('<img src="img/items/happy_winner.gif">');
+          $('#game_row').html('<h1 class="my-4"><small>Συγχαρητήρια! Τερμάτισες το παιχνίδι!</small></h1>');
+        }
+      }
+</script>
+
+  </body>
+
+</html>

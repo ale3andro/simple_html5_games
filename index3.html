@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+   
+    <title>Απλή επιλογή λέξης</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../bower_components/bootstrap4/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/2-col-portfolio.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <!-- Page Heading -->
+      <div class="alert alert-primary" role="alert">Στις παρακάτω προτάσεις, επιλέξτε τη λέξη - ζώο</div>
+      
+      <div class="row" class="">
+          <div id="game_image" class="rounded d-flex justify-content-center"><img src="img/Loadingsome.gif"></div>
+      </div>
+
+      <div class="row" class="">
+        <div id="game_sentence"></div>
+      </div>
+
+      <div class="row">
+        <input type="button" id="alxcheck" value="Έλεγχος">
+    </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="../bower_components/bootstrap4/dist/js/bootstrap.min.js"></script>
+    <script>
+        counter=0;
+        var sentences = [
+              [ "Ο μεγάλος ελέφαντας", "ελέφαντας"],
+              [ "Το κίτρινο καναρίνι", "καναρίνι"],
+              [ "Ποντίκι πεινασμένο", "Ποντίκι"],
+              [ "Γρήγορο άλογο", "άλογο"],
+              [ "Ο σκύλος τρώει το κόκαλο", "σκύλος"],
+              [ "Το κουβάρι που κυνηγάει η γάτα", "γάτα"],
+              [ "Η πάπια είναι μέσα στη λίμνη", "πάπια"],
+              [ "Το ψάρι στη γυάλα", "ψάρι" ],
+              [ "Ο λύκος ζει στο βουνό", "λύκος"],
+              [ "Η αλεπού έχει χρώμα πορτοκαλί", "αλεπού"],
+              [ "Το παιδί παίζει με το δελφίνι", "δελφίνι"],
+              [ "Το πιο γρήγορο ζώο είναι το τσίταχ", "τσίταχ"],
+              [ "Ο κροκόδειλος είναι ο βασιλιάς του ποταμού", "κροκόδειλος"],
+              [ "Η Μάσα και ο αρκούδος", "αρκούδος"],
+              [ "Πόσο ψηλά πετάει ο αετός", "αετός"],
+              [ "Αυτό το κουνούπι με ενοχλεί πολύ", "κουνούπι"], 
+              [ "Έχει μια μύγα πάνω στο καρπούζι", "μύγα"],
+              [ "Οχτώ πόδια για το χταπόδι", "χταπόδι"],
+              [ "Από όλα τα θαλασσινά μου αρέσει το λαβράκι", "λαβράκι"]
+          ];
+      $( function() {
+        $( "#alxcheck" ).click( function() {
+          if (window.getSelection().toString() == sentences[counter][1])
+          {
+              if (counter!=(sentences.length-1)) {
+                  counter+=1;
+                  next_challenge();
+              }
+              else
+              {
+                $('#game_sentence').html('<img src="img/items/happy_winner.gif">');
+                $('#game_image').html('');
+                $('#alxcheck').hide();
+              }
+          }
+          else  
+            alert('Προσπάθησε πάλι!');
+
+        });
+          
+       
+      });
+
+      function next_challenge() {
+        $('#game_sentence').html('<h1>' + sentences[counter][0] + '</h1>');
+        $('#game_image').html('<img class=""img-fluid" style="height:300px" src="img/free-clipart-animals/' + sentences[counter][1].toUpperCase() + '.png">');
+      }
+
+       $( document ).ready(function() { next_challenge(); });
+
+</script>
+
+  </body>
+
+</html>
