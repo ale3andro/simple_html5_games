@@ -132,9 +132,13 @@ $( function() {
         console.log('User thinks: ' + user_thinks);
         console.log('Correct answer: ' + metadata[2]);
         if (user_thinks==metadata[2]) 
-            alert('Got it right!');
+        {
+            $("#alx_draggables").html('<img src="img/items/happy_winner.gif" />');
+            $("#alx_droppables").html("");
+            $("#alx_button").html("");
+        }
         else
-            alert('try again!');
+            alert('Δυστυχώς όχι... Δοκίμασε πάλι!');
         
     });
   })
