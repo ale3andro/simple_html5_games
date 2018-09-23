@@ -80,9 +80,25 @@ function get_data_from_server(){
 function setup_matching() {
     $("#alx_draggables").html("");
     for (var i=0; i<draggables.length; i++) {
-        $("#alx_draggables").html($("#alx_draggables").html() + draggables[i]['value']);
+        thediv = '<div value="' + draggables[i]['id'] + '" id="draggable' + draggables[i]['id'] + '" class="alx_draggable ui-widget-content"><img src="' + draggables[i]['img_src'] + '" class="img-thumbnail"/></div>';
+        $("#alx_draggables").html($("#alx_draggables").html() + thediv);   
     }
+    for (var i=0; i<draggables.length; i++) {
+        $('#draggable' + draggables[i]['id']).draggable();
+    }
+    
+    $("#alx_droppables").html("");
+    for (var i=0; i<droppables.length; i++) {
+        thediv = '<div id="droppable' + droppables[i]['id'] + '" class="alx_droppable ui-widget-header text-center"><span class="alx_droppablespan" id="droppable' + droppables[i]['id'] + 'span"></span>' + droppables[i]['text'] + '</div>';
+        $("#alx_droppables").html($("#alx_droppables").html() + thediv);
+    }
+    for (var i=0; i<droppables.length; i++) {
+        $("#droppable" + droppables[i]['id']).droppable({
+            drop: function( event, ui ) { $(this).find("span").text(ui.draggable.attr('value')); }
+        });
+    } 
 
+    $("#alx_button").html('<input type="button" id="alxtest" class="btn btn-primary" value="Έλεγχος">');
 }
 
 $( function() {
@@ -100,19 +116,25 @@ $( function() {
     }
     
     setup_matching();
-
-    $( "#draggable0" ).draggable();
-    $( "#draggable1" ).draggable();
-    $( "#draggable2" ).draggable();
-    $( "#draggable3" ).draggable();
-    $( "#draggable4" ).draggable();
+    /*
     $( "#droppable0" ).droppable({
         drop: function( event, ui ) { $("#droppable0span").text(ui.draggable.attr("value")); }
     });
     $( "#droppable1" ).droppable({
         drop: function( event, ui ) { $("#droppable1span").text(ui.draggable.attr("value")); }
     });
+    */
     $("#alxtest").click(function() {
-        window.alert($("#droppable1span").text());
+        user_thinks = "";
+        for (var i=0; i<droppables.length; i++) { 
+            user_thinks = user_thinks + $("#droppable" + droppables[i]['id']+ "span").text();
+        }
+        console.log('User thinks: ' + user_thinks);
+        console.log('Correct answer: ' + metadata[2]);
+        if (user_thinks==metadata[2]) 
+            alert('Got it right!');
+        else
+            alert('try again!');
+        
     });
-  });
+  })

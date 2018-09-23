@@ -2,49 +2,49 @@
     "metadata" : {
                     "title" : "Quiz1",
                     "class" : "Α",
-                    "answer" : "23104"
+                    "answer" : "10432"
                 },
     "draggables" : {
                     "draggable0" : {
-                                        "value" : "0", 
+                                        "id" : "0", 
                                         "img_src" : "tux_msn.png"
                                     },
                     "draggable1" : {
-                                        "value" : "1", 
+                                        "id" : "1", 
                                         "img_src" : "recycle.png"
                                     },
                     "draggable2" : {
-                                        "value" : "2", 
+                                        "id" : "2", 
                                         "img_src" : "dog.png"
                                     },
                     "draggable3" : {
-                                        "value" : "3", 
+                                        "id" : "3", 
                                         "img_src" : "cat.png"
                                     },
                     "draggable4" : {
-                                        "value" : "4", 
+                                        "id" : "4", 
                                         "img_src" : "elephant.png"
                                     }
                     },
     "droppables" : {
                     "droppable0" : {
-                                        "span_id" : "0", 
+                                        "id" : "0", 
                                         "text" : "Ανακύκλωση"
                                     },
                     "droppable1" : {
-                                        "span_id" : "1", 
+                                        "id" : "1", 
                                         "text" : "Πιγκουίνος"
                                     },
                     "droppable2" : {
-                                        "span_id" : "2", 
+                                        "id" : "2", 
                                         "text" : "Ελέφαντας"
                                     },
                     "droppable3" : {
-                                        "span_id" : "3", 
+                                        "id" : "3", 
                                         "text" : "Γάτα"
                                     },
                     "droppable4" : {
-                                        "span_id" : "4", 
+                                        "id" : "4", 
                                         "text" : "Σκύλος"
                                     }
                     }
