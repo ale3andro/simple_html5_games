@@ -47,6 +47,7 @@ function get_data_from_server(){
         var droppables_count = 0;
            
        metadata[0] = data['metadata']['title'];
+       $("#alx_title").html(metadata[0]);
        metadata[1] = data['metadata']['class'];
        metadata[2] = data['metadata']['answer'];
         $.each(data['draggables'], function(index, value) {
