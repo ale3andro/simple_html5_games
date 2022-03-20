@@ -85,28 +85,29 @@
     <script>
         counter=0;
         var sentences = [
-              [ "Μία&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Δύο", "Μία"],
-              [ "Οκτώ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Τέσσερις", "Οκτώ"],
-              [ "Δύο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Δέκα", "Δέκα"],
-              [ "Δύο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Δώδεκα", "Δώδεκα"],
-              [ "Έντεκα&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Οκτώ", "Έντεκα"],
-              [ "Οκτώ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Δύο", "Δύο"],
-              [ "Τέσσερις&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Έντεκα", "Τέσσερις"],
-              [ "Επτά&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Τρείς", "Τρείς"],
-              [ "Έξι&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Τρείς", "Έξι"],
-              [ "Επτά&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Εννιά", "Εννιά"],
+              [ "και_Τέταρτο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;παρά_Τέταρτο", "01-15", "και_Τέταρτο"],
+              [ "και_Τέταρτο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;παρά_Τέταρτο", "06-15", "και_Τέταρτο"],
+              [ "και_Τέταρτο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;παρά_Τέταρτο", "03-45", "παρά_Τέταρτο"],
+              [ "και_Τέταρτο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;παρά_Τέταρτο", "11-45", "παρά_Τέταρτο"],
+              [ "και_Τέταρτο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;παρά_Τέταρτο", "05-15", "και_Τέταρτο"],
+              [ "και_Τέταρτο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;παρά_Τέταρτο", "04-45", "παρά_Τέταρτο"],
+              [ "και_Τέταρτο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;παρά_Τέταρτο", "12-15", "και_Τέταρτο"],
+              [ "και_Τέταρτο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;παρά_Τέταρτο", "10-45", "παρά_Τέταρτο"],
+              [ "και_Τέταρτο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;παρά_Τέταρτο", "06-45", "παρά_Τέταρτο"],
+              [ "και_Τέταρτο&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;παρά_Τέταρτο", "09-15", "και_Τέταρτο"]
           ];
       $( function() {
         $( "#alxcheck" ).click( function() {
-          if (window.getSelection().toString() == sentences[counter][1])
+          if (window.getSelection().toString() == sentences[counter][2])
           {
               if (counter!=(sentences.length-1)) {
-                counter+=1;
-                animateCSS('#game_image', 'backOutDown').then((message) => {
-                      // Do something after the animation
-                      document.getSelection().removeAllRanges();
-                      next_challenge();
-                  });
+                  counter+=1;
+                  animateCSS('#game_image', 'backOutDown').then((message) => {
+                        // Do something after the animation
+                        document.getSelection().removeAllRanges();
+                        next_challenge();
+                    });
+                  
               }
               else
               {
@@ -121,18 +122,16 @@
                 $('#alxcheck').hide();
               }
           }
-          else {
+          else { 
             document.getSelection().removeAllRanges();
             animateCSS('#game_image', 'shakeX');
-          }  
-            
+          }
 
-        });
-          
+        });          
        
       });
 
-      // ale3andro 2022.03.13 -- Function from https://animate.style/
+    // ale3andro 2022.03.13 -- Function from https://animate.style/
       const animateCSS = (element, animation, prefix = 'animate__') =>
         // We create a Promise and return it
         new Promise((resolve, reject) => {
@@ -151,9 +150,10 @@
             node.addEventListener('animationend', handleAnimationEnd, {once: true});
         });
 
+
       function next_challenge() {
         $('#game_sentence').html('<h1>' + sentences[counter][0] + '</h1>');
-        $('#game_image').html('<img class=""img-fluid" style="height:300px" src="img/analog-clock/' + sentences[counter][1] + '.png">');
+        $('#game_image').html('<img class=""img-fluid" style="height:300px" src="img/analog-clock-hours/' + sentences[counter][1] + '.png">');
       }
 
        $( document ).ready(function() { next_challenge(); });
