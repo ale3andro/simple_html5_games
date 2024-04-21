@@ -98,7 +98,7 @@
           ];
       $( function() {
         $( "#alxcheck" ).click( function() {
-          if (window.getSelection().toString() == sentences[counter][2])
+          if (window.getSelection().toString().trim() == sentences[counter][2])
           {
               if (counter!=(sentences.length-1)) {
                   counter+=1;
